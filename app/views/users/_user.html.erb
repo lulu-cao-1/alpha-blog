@@ -1,0 +1,16 @@
+<div>
+  <% @users.each do |user| %>
+    <div>
+      <h1><%= link_to user.username, user %></h1>
+    </div>
+    <div>
+      <%= link_to gravatar_for(user), user %>
+    </div>
+    <div>
+      <%= pluralize(user.articles.count, 'article') %>
+    </div>
+    Joined <%= time_ago_in_words(user.created_at) %>
+    <%= link_to "View profile", user %>
+    <%= link_to 'Edit profile', edit_user_path(user) %>
+  <% end %>
+</div>
