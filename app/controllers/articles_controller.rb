@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  # call a private method find_article before the show, edit, update, and destroy actions
   before_action :find_article, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -19,7 +20,7 @@ class ArticlesController < ApplicationController
   def create
     # render plain: params[:article]
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     # render plain: @article.inspect
     if @article.save
       flash[:notice] = "Article was created successfully."
