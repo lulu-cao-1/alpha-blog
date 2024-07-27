@@ -1,10 +1,18 @@
 <h1>show</h1>
-Title: <%= @article.title %>
-<br/>
-Description: <%= @article.description %>
-<br/>
-Author: <%= @article.user.username %>
-<br/>
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', articles_path %>
+<div>
+  Title: <%= @article.title %>
+</div>
+<div>
+  Description: <%= @article.description %>
+</div>
+<div>
+  Author: <%= @article.user.username %>
+</div>
+<div>
+  <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+</div>
+<div>
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', articles_path %>
+</div>
