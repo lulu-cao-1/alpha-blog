@@ -11,8 +11,13 @@
     </div>
     Joined <%= time_ago_in_words(user.created_at) %>
     <%= link_to "View profile", user %>
-    <% if logged_in? and user == current_user %>
-      <%= link_to 'Edit profile', edit_user_path(user) %>
+    <% if logged_in? %>
+      <% if user == current_user %>
+        <%= link_to 'Edit profile', edit_user_path(user) %>
+      <% end %>
+      <% if current_user.is_admin? %>
+        <%= link_to "Delete profile", user_path(user), method: :delete, data: { confirm: "Are you sure" } %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

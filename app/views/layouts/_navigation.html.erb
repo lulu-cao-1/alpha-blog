@@ -1,12 +1,14 @@
 <div>
-  <%= link_to "Explore Articles", articles_path %>
-  <%= link_to "Community", users_path %>
+  <div><%= link_to "Explore Articles", articles_path %></div>
+  <div><%= link_to "Community", users_path %></div>
   <% if logged_in? %>
-    <%= link_to current_user.username, user_path(current_user) %>
-    <%= link_to "Log out", logout_path, method: :delete %>
-    <%= link_to "Delete Account", user_path(current_user), method: :delete, data: { confirm: "Are you sure?" } %>
+    <div>
+      <%= link_to ( current_user.is_admin? ? 'Admin ' +  current_user.username :  current_user.username ), user_path(current_user) %>
+    </div>
+    <div><%= link_to "Log out", logout_path, method: :delete %></div>
+    <div><%= link_to "Delete Account", user_path(current_user), method: :delete, data: { confirm: "Are you sure?" } %></div>
   <% else %>
-    <%= link_to "Log in", login_path %>
-    <%= link_to "Sign up", signup_path %>
+    <div><%= link_to "Log in", login_path %></div>
+    <div><%= link_to "Sign up", signup_path %></div>
   <% end %>
 </div>
