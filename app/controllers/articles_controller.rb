@@ -1,9 +1,10 @@
 class ArticlesController < ApplicationController
   # call a private method find_article before the show, edit, update, and destroy actions
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show
-    # byebug
   end
 
   def index
@@ -53,5 +54,12 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def require_same_user
+    if current_user != @article.user
+      flash[:alert] = "You can only edit or delete your own article."
+      redirect_to @article
+    end
   end
 end
