@@ -1,0 +1,34 @@
+<h1>All categories</h1>
+<div class="flickr_pagination">
+  <%= will_paginate @categories, :container => false %>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>Category Name</th>
+      <th>Created At</th>
+      <th>Edited At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td>
+          <%= link_to category.name, category_path(category) %>
+        </td>
+        <td>Created <%= time_ago_in_words(category.created_at) %> ago</td>
+        <td>Edited <%= time_ago_in_words(category.updated_at) %> ago</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if logged_in? %>
+  <p>
+    <%= link_to 'New category', new_category_path %>
+  </p>
+<% end %>
+
+<div class="flickr_pagination">
+  <%= will_paginate @categories, :container => false %>
+</div>
