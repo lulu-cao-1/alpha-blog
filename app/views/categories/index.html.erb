@@ -5,7 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Category Name</th>
+      <th>Category</th>
+      <th>Articles</th>
       <th>Created At</th>
       <th>Edited At</th>
     </tr>
@@ -15,6 +16,9 @@
       <tr>
         <td>
           <%= link_to category.name, category_path(category) %>
+        </td>
+        <td>
+          <%= pluralize(category.articles.count, 'article') %>
         </td>
         <td>Created <%= time_ago_in_words(category.created_at) %> ago</td>
         <td>Edited <%= time_ago_in_words(category.updated_at) %> ago</td>

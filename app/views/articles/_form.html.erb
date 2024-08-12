@@ -11,6 +11,14 @@
   </p>
 
   <p>
+    <%= form.label :category %><br>
+    <%=
+      form.collection_select(:category_ids, Category.all, :id, :name,
+      { prompt: "Select a category" }, { multiple: true, size: 3 })
+    %>
+  </p>
+
+  <p>
     <%= form.submit %>
   </p>
 <% end %>

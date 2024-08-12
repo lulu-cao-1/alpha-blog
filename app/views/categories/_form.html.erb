@@ -1,0 +1,12 @@
+<%= render 'shared/errors', obj: @category %>
+
+<%= form_with(model: @category, local: true) do |form| %>
+  <p>
+    <%= form.label :name, "Category Name" %><br>
+    <%= form.text_field :name, placeholder: "Enter a name" %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
