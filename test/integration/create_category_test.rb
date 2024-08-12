@@ -6,7 +6,7 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
     sign_in_as(@admin_user)
   end
 
-  test "get new category form and create category" do
+  test "get create category form and create category" do
     get "/categories/new"
     assert_response :success
     assert_difference 'Category.count', 1 do
@@ -18,7 +18,7 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
     assert_match "sports", response.body
   end
 
-  test "get new category form and reject invalid category" do
+  test "get create category form and reject invalid category" do
     get "/categories/new"
     assert_response :success
     assert_no_difference 'Category.count' do
